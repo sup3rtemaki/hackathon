@@ -1,0 +1,87 @@
+<div *ngIf="dadosEnviados == 0">
+  <h1 class="text-center">Cadastro de Cliente</h1>
+  <form novalidate #formulario="ngForm" (ngSubmit)="confirmarInscricao(formulario)">
+      <div class="form-group row mt-1">
+          <label class="col-sm-2 col-form-label">Nome Completo:</label>
+          <div class="col-sm-10">
+              <input type="text" class="form-control" placeholder="Digite aqui o nome completo do cliente" name="nome" ngModel required
+                  minlength="5" maxlength="250" #inputNome="ngModel" (input)="verificaFormulario(formulario)">
+              <small *ngIf="inputNome.valid && inputNome.touched" class="form-text text-success">Ok</small>
+              <small *ngIf="!inputNome.valid && inputNome.touched" class="form-text text-danger">Nome inválido</small>
+          </div>
+      </div>
+      <div class="form-group row">
+          <label class="col-sm-2 col-form-label">CPF:</label>
+          <div class="col-sm-5">
+              <input type="text" class="form-control" placeholder="Somente números" name="cpf" ngModel required minlength="11" maxlength="11"
+                  #inputCpf="ngModel" (input)="testaCPF(formulario)">
+              <small *ngIf="inputCpf.valid && inputCpf.touched && cpfValido==1" class="form-text text-success">Ok</small>
+              <small *ngIf="!inputCpf.valid && inputCpf.touched || (cpfValido==0  && inputCpf.touched) " class="form-text text-danger">CPF inválido</small>
+          </div>
+          <label class="col-sm-2 col-form-label">Data de Nascimento:</label>
+          <div class="col-sm-3">
+              <input type="date" class="form-control" name="data_nascimento" ngModel required #inputDataNasc="ngModel" (input)="verificaFormulario(formulario)">
+              <small *ngIf="inputDataNasc.valid && inputDataNasc.touched" class="form-text text-success">Ok</small>
+              <small *ngIf="!inputDataNasc.valid && inputDataNasc.touched" class="form-text text-danger">Data de nascimento inválida</small>
+          </div>
+      </div>
+      <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Endereco:</label>
+          <div class="col-sm-10">
+              <input type="text" class="form-control" placeholder="Digite aqui o endereço do cliente" name="endereco" ngModel required minlength="2"
+                  maxlength="250" #inputEndereco="ngModel" (input)="verificaFormulario(formulario)">
+              <small *ngIf="inputEndereco.valid && inputEndereco.touched" class="form-text text-success">Ok</small>
+              <small *ngIf="!inputEndereco.valid && inputEndereco.touched" class="form-text text-danger">Endereco inválido</small>
+          </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Telefone Residencial/ Comercial:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" placeholder="(34) 3333-3333" name="residencial" ngModel required minlength="2"
+                maxlength="250" #inputTelefone="ngModel" (input)="verificaFormulario(formulario)">
+            <small *ngIf="inputTelefone.valid && inputTelefone.touched" class="form-text text-success">Ok</small>
+            <small *ngIf="!inputTelefone.valid && inputTelefone.touched" class="form-text text-danger">Telefone inválido</small>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Telefone Celular (Whatsapp):</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" placeholder="(34) 99999-9999" name="celular" ngModel required minlength="2"
+                maxlength="250" #inputCelular="ngModel" (input)="verificaFormulario(formulario)">
+            <small *ngIf="inputCelular.valid && inputCelular.touched" class="form-text text-success">Ok</small>
+            <small *ngIf="!inputCelular.valid && inputCelular.touched" class="form-text text-danger">Telefone inválido</small>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Facebook:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" placeholder="Digite aqui o facebook do cliente (Caso Possua)" name="facebook" ngModel minlength="2"
+                maxlength="250" #inputFacebook="ngModel" (input)="verificaFormulario(formulario)">
+            </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Instagram:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" placeholder="Digite aqui o Instagram do cliente (Caso Possua)" name="instagram" ngModel minlength="2"
+                maxlength="250" #inputInsta="ngModel" (input)="verificaFormulario(formulario)">
+            </div>
+      </div>
+      <div class="form-group row">
+          <div class="offset-sm-2 col-sm-10">
+              <button type="submit" class="btn btn-outline-success" [disabled]="formEstado">Cadastrar</button>
+          </div>
+      </div>
+  </form>
+
+</div>
+
+
+<div class="container" *ngIf="dadosEnviados == 1">
+  <div class="alert alert-success" role="alert">
+    <h4 class="alert-heading">Dados cadastrados com sucesso!</h4>
+    <hr>
+    <p class="mb-0">Caso tenha alguma dúvida, entrar em contato com atendimento@tremdeideias.com.br.</p>
+    <br>
+    <button type="button" class="btn btn-outline-success btn-lg btn-block" routerLink = "/">Voltar</button>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<h3 class="text-center">Clientes</h3>
+<div class="form-group row">
+    <div class="col-sm-1"></div>
+  <div class="col-sm-10">
+    <input type="text" class="form-control" placeholder="Buscar pelo nome" (input)="buscaNome($event)">
+
+  </div>
+</div>
+<table class="table">
+  <thead class="thead-inverse">
+    <tr>
+      <th>CPF</th>
+      <th>Nome</th>
+      <th>Residencial</th>
+      <th>Celular</th>
+      <th>Excluir</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let cliente of clientesFiltro">
+      <th scope="row">{{cliente.cpf}}</th>
+      <td>{{cliente.nome}}</td>
+      <td>{{cliente.residencial}}</td>
+      <td>{{cliente.celular}}</td>
+      <td><button type="button" class="btn btn-outline-danger" (click)="excluirCliente(cliente)">Excluir</button></td>
+    </tr>
+  </tbody>
+</table>
+
+

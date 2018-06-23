@@ -1,0 +1,91 @@
+<div *ngIf="exibicao == 0">
+  <h3 class="text-center">Produtos</h3>
+  <div class="form-group row">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" placeholder="Buscar pelo produto" (input)="buscaNome($event)">
+
+    </div>
+  </div>
+  <table class="table">
+    <thead class="thead-inverse">
+      <tr>
+        <th>Produto</th>
+        <th>Tamanho</th>
+        <th>Fornecedor</th>
+        <th>Preço de compra</th>
+        <th>Preço de venda</th>
+        <th>Excluir</th>
+        <th>Etiqueta</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let produto of produtosFiltro">
+        <th scope="row">{{produto.produto}}</th>
+        <td>{{produto.tamanho_num}}</td>
+        <td>{{produto.fornecedor}}</td>
+        <td>{{produto.preco_compra}}</td>
+        <td>{{produto.preco_venda}}</td>
+        <td>
+          <button type="button" class="btn btn-outline-danger" (click)="excluirProduto(produto)">Excluir</button>
+        </td>
+        <td>
+          <button type="button" class="btn btn-outline-success" (click)="etiquetaProduto(produto)">Gerar Etiqueta</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class=" container" *ngIf="exibicao == 1">
+  <div class="card-body">
+    <h3 class="text-center">
+      Etiqueta</h3>
+    <form [formGroup]="formulario" (ngSubmit)="gerarEtiqueta()">
+      <div class="form-group row">
+        <label class="col-sm-2 ">Preço a vista:</label>
+        <div class="col-sm-4">
+          <input type="text" class="form-control" name="precoVista" formControlName="precoVista" required>
+        </div>
+        <label class="col-sm-2">Preço a prazo:</label>
+        <div class="col-sm-4">
+          <input type="text" class="form-control" name="precoPrazo" formControlName="precoPrazo" required>
+        </div>
+      </div>
+
+    
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Numero de parcelas:</label>
+        <div class="col-sm-4">
+          <input type="text" class="form-control" name="num_parcelas" formControlName="num_parcelas" required>
+        </div>
+        <label class="col-sm-2 col-form-label">Valor das parcelas:</label>
+          <div class="col-sm-4">
+            <input type="text" class="form-control" name="valor_parcelas" formControlName="valor_parcelas" required>
+          </div>
+        </div>
+
+
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Taxa de juros:</label>
+          <div class="col-sm-4">
+            <input type="text" class="form-control" name="taxa_juros" formControlName="taxa_juros" required>
+          </div>
+          <label class="col-sm-2 col-form-label">Outros encargos:</label>
+          <div class="col-sm-4">
+            <input type="text" class="form-control" name="outro_encargo" formControlName="outro_encargo" required>
+            </div>
+        </div>
+
+      
+
+        <div class="form-group row">
+          <div class="offset-sm-2 col-sm-12 align: center">
+            <button type="submit" class="btn btn-outline-success">Gerar etiqueta</button>
+          </div>
+        </div>
+
+     
+    </form>
+  </div>
+</div>

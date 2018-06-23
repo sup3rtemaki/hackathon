@@ -1,0 +1,10 @@
+/* You can add global styles to this file, and also import other style files */
+.bg-4 { 
+    background-color: #2f2f2f;
+    color: #ffffff;
+}
+.rodape{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}

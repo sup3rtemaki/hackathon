@@ -1,0 +1,27 @@
+<h3 class="text-center">Clientes</h3>
+<div class="form-group row">
+    <div class="col-sm-1"></div>
+  
+</div>
+<table class="table">
+  <thead class="thead-inverse">
+    <tr>
+      <th>CPF</th>
+      <th>Nome</th>
+      <th>Residencial</th>
+      <th>Celular</th>
+      <th>Parabenizar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let cliente of clientesFiltro">
+      <th scope="row">{{cliente.cpf}}</th>
+      <td>{{cliente.nome}}</td>
+      <td>{{cliente.residencial}}</td>
+      <td>{{cliente.celular}}</td>
+      <td><button type="button" class="btn btn-outline-danger" (click)="parabenizar(cliente)">Parabenizar</button></td>
+    </tr>
+  </tbody>
+</table>
+
+
